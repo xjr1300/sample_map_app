@@ -1,0 +1,59 @@
+{
+    "cSpell.words": [
+        "anyenv",
+        "browserslist",
+        "loglevel",
+        "mkdir",
+        "nodenv",
+        "preinstall",
+        "stylelint",
+        "stylelintrc",
+        "TTFB",
+        "typesync"
+    ],
+    "files.exclude": {
+        "**/.git": false,
+        "**/.vscode": false
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true,
+        "source.fixAll.stylelint": true,
+    },
+    "css.validate": false,
+    "less.validate": false,
+    "scss.validate": false,
+    "editor.formatOnSave": false,
+    "eslint.packageManager": "yarn",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    "editor.wordWrap": "on",
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "npm.packageManager": "yarn",
+    "prettier.prettierPath": "./node_modules/prettier",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[graphql]": {
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true
+    },
+    "[javascript]": {
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true
+    },
+    "[javascriptreact]": {
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true
+    },
+    "[json]": {
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true
+    },
+    "[typescript]": {
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true
+    },
+    "[typescriptreact]": {
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true
+    },
+}
