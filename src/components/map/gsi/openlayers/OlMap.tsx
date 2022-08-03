@@ -10,7 +10,7 @@ import {
 import { Map as InnerMap, View } from 'ol';
 import { defaults as defaultControls } from 'ol/control';
 
-import { NullableHTMLDivElement } from '../../types';
+import { NullableHTMLDivElement } from '../../../../types';
 
 import 'ol/ol.css';
 

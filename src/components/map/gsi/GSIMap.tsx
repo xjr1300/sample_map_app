@@ -1,7 +1,7 @@
 import { FC, ReactNode, useState } from 'react';
 
 import { RadioChangeEvent } from 'antd';
-import { OlMap } from '../openlayers/OlMap';
+import { OlMap } from './openlayers/OlMap';
 import GSILayerSelector, { GSILayerName } from './GSILayerSelector';
 import {
   GSIBlankLayer,

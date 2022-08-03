@@ -4,7 +4,7 @@ import { FC, useContext, useEffect } from 'react';
 import TileSourceType from 'ol/source/Tile';
 import { XYZ } from 'ol/source';
 
-import { MapContext } from '../openlayers/OlMap';
+import { MapContext } from './openlayers/OlMap';
 
 type BaseProps = {
   url?: string;
