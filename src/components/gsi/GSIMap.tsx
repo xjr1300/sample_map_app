@@ -1,7 +1,8 @@
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useState } from 'react';
 
+import { RadioChangeEvent } from 'antd';
 import { OlMap } from '../openlayers/OlMap';
-import GSILayerSelector from './GSILayerSelector';
+import GSILayerSelector, { GSILayerName } from './GSILayerSelector';
 import {
   GSIBlankLayer,
   GSIPaleLayer,
@@ -24,18 +25,26 @@ export const GSIMap: FC<Props> = ({
   children = undefined,
   center = undefined,
   zoom = undefined,
-}) => (
-  <>
-    <GSILayerSelector />
-    <OlMap style={mapStyle} center={center} zoom={zoom}>
-      {children}
-      <GSIStandardLayer options={{ visible: false }} />
-      <GSIPaleLayer options={{ visible: false }} />
-      <GSIBlankLayer options={{ visible: false }} />
-      <GSIPhotoLayer options={{ visible: true }} />
-    </OlMap>
-  </>
-);
+}) => {
+  const [visibleLayer, setVisibleLayer] = useState<GSILayerName>('pale');
+
+  const onLayerChanged = (e: RadioChangeEvent) => {
+    setVisibleLayer(e.target.value as GSILayerName);
+  };
+
+  return (
+    <>
+      <GSILayerSelector layer={visibleLayer} onLayerChanged={onLayerChanged} />
+      <OlMap style={mapStyle} center={center} zoom={zoom}>
+        {children}
+        <GSIStandardLayer options={{ visible: visibleLayer === 'standard' }} />
+        <GSIPaleLayer options={{ visible: visibleLayer === 'pale' }} />
+        <GSIBlankLayer options={{ visible: visibleLayer === 'blank' }} />
+        <GSIPhotoLayer options={{ visible: visibleLayer === 'photo' }} />
+      </OlMap>
+    </>
+  );
+};
 
 GSIMap.defaultProps = {
   children: undefined,
