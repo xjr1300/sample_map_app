@@ -13,8 +13,11 @@ import { defaults as defaultControls, ZoomSlider } from 'ol/control';
 import { NullableHTMLDivElement } from '../../../types';
 
 import 'ol/ol.css';
+import { EPSG_WEB_MERCATOR } from '../constants';
 
 type OptionalMap = InnerMap | undefined;
+
+const VIEW_MAX_ZOOM = 18;
 
 // マップコンテキスト
 export const MapContext = createContext<OptionalMap>(undefined);
@@ -39,8 +42,8 @@ export const OlMap: FC<Props> = ({
     const initialMap = new InnerMap({
       target: mapRef.current as HTMLDivElement,
       view: new View({
-        projection: 'EPSG:3857',
-        maxZoom: 18,
+        projection: EPSG_WEB_MERCATOR,
+        maxZoom: VIEW_MAX_ZOOM,
       }),
       controls: defaultControls({
         attributionOptions: { collapsible: false },
