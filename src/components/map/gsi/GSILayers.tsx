@@ -6,7 +6,7 @@ import TileSourceType from 'ol/source/Tile';
 import { XYZ } from 'ol/source';
 
 import { MapContext } from '../openlayers/OlMap';
-import { EPSG_WEB_MERCATOR } from '../constants';
+import { EPSG_WEB_MERCATOR } from '../definitions';
 
 type BaseProps = {
   url?: string;
