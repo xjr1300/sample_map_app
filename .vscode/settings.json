@@ -16,7 +16,8 @@
         "stylelint",
         "stylelintrc",
         "TTFB",
-        "typesync"
+        "typesync",
+        "zoomslider"
     ],
     "files.exclude": {
         "**/.git": false,

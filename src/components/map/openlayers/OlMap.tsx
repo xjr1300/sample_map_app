@@ -8,7 +8,7 @@ import {
 } from 'react';
 
 import { Map as InnerMap, View } from 'ol';
-import { defaults as defaultControls } from 'ol/control';
+import { defaults as defaultControls, ZoomSlider } from 'ol/control';
 
 import { NullableHTMLDivElement } from '../../../types';
 
@@ -46,6 +46,8 @@ export const OlMap: FC<Props> = ({
         attributionOptions: { collapsible: false },
       }),
     });
+    const zoomSlider = new ZoomSlider();
+    initialMap.addControl(zoomSlider);
     setMap(initialMap);
 
     return () => initialMap.setTarget(undefined);
@@ -63,7 +65,7 @@ export const OlMap: FC<Props> = ({
 
   return (
     <MapContext.Provider value={map}>
-      <div ref={mapRef} className="ol-map" style={style}>
+      <div id="ol-map" ref={mapRef} className="ol-map" style={style}>
         {children}
       </div>
     </MapContext.Provider>

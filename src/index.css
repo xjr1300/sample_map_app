@@ -2,3 +2,30 @@ html[lang='ja'],
 body {
   font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
 }
+
+#ol-map .ol-zoom .ol-zoom-out {
+  margin-top: 200px;
+}
+
+#ol-map .ol-zoomslider {
+  top: calc(0.5em + 2px + 1px + 1.14 * 1.375em);
+  background-color: transparent;
+}
+
+#ol-map .ol-touch .ol-zoom .ol-zoom-out {
+  margin-top: 212px;
+}
+
+#ol-map .ol-touch .ol-zoomslider {
+  top: 2.75em;
+}
+
+#ol-map .ol-zoom-in.ol-has-tooltip:hover [role='tooltip'],
+#ol-map .ol-zoom-in.ol-has-tooltip:focus [role='tooltip'] {
+  top: 3px;
+}
+
+#ol-map .ol-zoom-out.ol-has-tooltip:hover [role='tooltip'],
+#ol-map .ol-zoom-out.ol-has-tooltip:focus [role='tooltip'] {
+  top: 232px;
+}
