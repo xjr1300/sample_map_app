@@ -1,11 +1,17 @@
 {
     "cSpell.words": [
+        "antd",
         "anyenv",
         "browserslist",
+        "contenteditable",
+        "destyle",
         "EPSG",
+        "focusring",
+        "Kaku",
         "loglevel",
         "mkdir",
         "nodenv",
+        "openlayers",
         "preinstall",
         "stylelint",
         "stylelintrc",

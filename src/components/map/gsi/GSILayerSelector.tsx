@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { Radio } from 'antd';
 import styled from 'styled-components';
-import { RadioChangedEvent } from '../../types';
+import { RadioChangedEvent } from '../../../types';
 
 // 国土地理院地図レイヤ名
 export type GSILayerName = 'standard' | 'pale' | 'blank' | 'photo';
