@@ -13,7 +13,7 @@ type BaseProps = {
   options?: Options<TileSourceType>;
 };
 
-const ATTRIBUTION =
+export const ATTRIBUTION =
   "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>";
 
 const GSI_STANDARD_LAYER_URL =
@@ -24,6 +24,8 @@ const GSI_BLANK_LAYER_URL =
   'https://cyberjapandata.gsi.go.jp/xyz/blank/{z}/{x}/{y}.png';
 const GSI_PHOTO_LAYER_URL =
   'https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg';
+
+const GSI_LAYER_Z_INDEX = 0;
 
 const GSILayer: FC<BaseProps> = ({ url, options }) => {
   const map = useContext(MapContext);
@@ -37,6 +39,7 @@ const GSILayer: FC<BaseProps> = ({ url, options }) => {
     });
     const localOptions = {
       ...options,
+      zIndex: GSI_LAYER_Z_INDEX,
       source,
     };
     const layer = new TileLayer(localOptions);
