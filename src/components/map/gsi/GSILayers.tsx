@@ -1,15 +1,29 @@
+import { FC, useContext, useEffect } from 'react';
+
 import { Tile as TileLayer } from 'ol/layer';
 import { Options } from 'ol/layer/BaseTile';
-import { FC, useContext, useEffect } from 'react';
 import TileSourceType from 'ol/source/Tile';
 import { XYZ } from 'ol/source';
 
 import { MapContext } from '../openlayers/OlMap';
+import { EPSG_WEB_MERCATOR } from '../constants';
 
 type BaseProps = {
   url?: string;
   options?: Options<TileSourceType>;
 };
+
+const ATTRIBUTION =
+  "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>";
+
+const GSI_STANDARD_LAYER_URL =
+  'https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png';
+const GSI_PALE_LAYER_URL =
+  'https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png';
+const GSI_BLANK_LAYER_URL =
+  'https://cyberjapandata.gsi.go.jp/xyz/blank/{z}/{x}/{y}.png';
+const GSI_PHOTO_LAYER_URL =
+  'https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg';
 
 const GSILayer: FC<BaseProps> = ({ url, options }) => {
   const map = useContext(MapContext);
@@ -17,10 +31,9 @@ const GSILayer: FC<BaseProps> = ({ url, options }) => {
   useEffect(() => {
     if (!map) return undefined;
     const source = new XYZ({
-      attributions:
-        "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>",
+      attributions: ATTRIBUTION,
       url,
-      projection: 'EPSG:3857',
+      projection: EPSG_WEB_MERCATOR,
     });
     const localOptions = {
       ...options,
@@ -46,10 +59,9 @@ type Props = {
   options?: Options<TileSourceType>;
 };
 
-// eslint-disable-next-line import/prefer-default-export
 export const GSIStandardLayer: FC<Props> = ({ options }) => {
   const props = {
-    url: 'https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png',
+    url: GSI_STANDARD_LAYER_URL,
     options,
   };
 
@@ -62,7 +74,7 @@ GSIStandardLayer.defaultProps = {
 
 export const GSIPaleLayer: FC<Props> = ({ options }) => {
   const props = {
-    url: 'https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png',
+    url: GSI_PALE_LAYER_URL,
     options,
   };
 
@@ -75,7 +87,7 @@ GSIPaleLayer.defaultProps = {
 
 export const GSIBlankLayer: FC<Props> = ({ options }) => {
   const props = {
-    url: 'https://cyberjapandata.gsi.go.jp/xyz/blank/{z}/{x}/{y}.png',
+    url: GSI_BLANK_LAYER_URL,
     options,
   };
 
@@ -88,7 +100,7 @@ GSIBlankLayer.defaultProps = {
 
 export const GSIPhotoLayer: FC<Props> = ({ options }) => {
   const props = {
-    url: 'https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg',
+    url: GSI_PHOTO_LAYER_URL,
     options,
   };
 
