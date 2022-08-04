@@ -1,32 +1,21 @@
-import {
-  createContext,
-  FC,
-  ReactNode,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { createContext, FC, useEffect, useRef, useState } from 'react';
 
 import { Map as InnerMap, View } from 'ol';
 import { defaults as defaultControls, ZoomSlider } from 'ol/control';
 
 import { NullableHTMLDivElement } from '../../../types';
+import { EPSG_WEB_MERCATOR, MapProps } from '../definitions';
 
 import 'ol/ol.css';
 
 type OptionalMap = InnerMap | undefined;
 
+const VIEW_MAX_ZOOM = 18;
+
 // マップコンテキスト
 export const MapContext = createContext<OptionalMap>(undefined);
 
-type Props = {
-  style: React.CSSProperties;
-  children?: ReactNode;
-  center?: number[];
-  zoom?: number;
-};
-
-export const OlMap: FC<Props> = ({
+export const OlMap: FC<MapProps> = ({
   style = { height: '100vh', width: '100%' },
   children = undefined,
   center = undefined,
@@ -39,8 +28,8 @@ export const OlMap: FC<Props> = ({
     const initialMap = new InnerMap({
       target: mapRef.current as HTMLDivElement,
       view: new View({
-        projection: 'EPSG:3857',
-        maxZoom: 18,
+        projection: EPSG_WEB_MERCATOR,
+        maxZoom: VIEW_MAX_ZOOM,
       }),
       controls: defaultControls({
         attributionOptions: { collapsible: false },
@@ -70,10 +59,4 @@ export const OlMap: FC<Props> = ({
       </div>
     </MapContext.Provider>
   );
-};
-
-OlMap.defaultProps = {
-  children: undefined,
-  center: undefined,
-  zoom: undefined,
 };

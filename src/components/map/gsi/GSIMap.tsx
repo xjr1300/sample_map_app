@@ -1,6 +1,7 @@
-import { FC, ReactNode, useState } from 'react';
+import { FC, useState } from 'react';
 
 import { RadioChangeEvent } from 'antd';
+import { MapProps } from '../definitions';
 import { OlMap } from '../openlayers/OlMap';
 import GSILayerSelector, { GSILayerName } from './GSILayerSelector';
 import {
@@ -12,16 +13,10 @@ import {
 
 import 'ol/ol.css';
 
-type Props = {
-  children?: ReactNode;
-  center?: number[];
-  zoom?: number;
-};
-
 const mapStyle = { height: '100vh', width: '100%', paddingBottom: '2rem' };
 
 // 国土地理院マップコンポーネント
-export const GSIMap: FC<Props> = ({
+export const GSIMap: FC<MapProps> = ({
   children = undefined,
   center = undefined,
   zoom = undefined,
@@ -48,8 +43,6 @@ export const GSIMap: FC<Props> = ({
 
 GSIMap.defaultProps = {
   children: undefined,
-  center: undefined,
-  zoom: undefined,
 };
 
 export default GSIMap;
