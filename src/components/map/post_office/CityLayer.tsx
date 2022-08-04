@@ -9,9 +9,10 @@ import GeoJSON from 'ol/format/GeoJSON';
 
 import { MapContext } from '../openlayers/OlMap';
 import { ATTRIBUTION } from '../gsi/GSILayers';
-import { EPSG_WEB_MERCATOR } from '../definitions';
-
-export const SWITCH_CITIES_TO_POST_OFFICES_RESOLUTION = 30;
+import {
+  EPSG_WEB_MERCATOR,
+  SWITCH_CITIES_TO_POST_OFFICES_RESOLUTION,
+} from '../definitions';
 
 const CITY_LAYER_URL = 'http://localhost:8080/cities';
 const CITY_LABEL_FONT = '12px Noto Sans JP,sans-serif';
@@ -66,6 +67,7 @@ const cityStyle: StyleFunction = (feature: FeatureLike, resolution: number) =>
     text: cityStyleText(feature, resolution),
   });
 
+// eslint-disable-next-line import/prefer-default-export
 export const CityLayer: FC = () => {
   const map = useContext(MapContext);
 
