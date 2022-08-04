@@ -8,6 +8,7 @@ import { CityLayer } from './CityLayer';
 import { EPSG_WEB_MERCATOR, MapProps } from '../definitions';
 import { PostOfficeLayer, POST_OFFICE_LAYER_URL } from './PostOfficeLayer';
 import { PostOfficeSelectedLayer } from './PostOfficeSelectedLayer';
+import { PostOfficeOverlay } from './PostOfficeOverlay';
 
 const PostOfficeMap: FC<MapProps> = (props) => {
   const postOfficeSource = useMemo(
@@ -27,6 +28,7 @@ const PostOfficeMap: FC<MapProps> = (props) => {
       <CityLayer />
       <PostOfficeLayer source={postOfficeSource} />
       <PostOfficeSelectedLayer source={postOfficeSource} />
+      <PostOfficeOverlay />
     </GSIMap>
   );
 };

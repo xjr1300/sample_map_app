@@ -1,7 +1,7 @@
 import { FC, useCallback, useContext, useEffect, useState } from 'react';
 
-import { VectorTile as VectorTileLayer } from 'ol/layer';
 import { VectorTile as VectorTileSource } from 'ol/source';
+import { VectorTile as VectorTileLayer } from 'ol/layer';
 import { FeatureLike } from 'ol/Feature';
 
 import BaseEvent from 'ol/events/Event';
@@ -74,12 +74,11 @@ export const PostOfficeSelectedLayer: FC<Props> = ({ source }) => {
       void postOfficeLayer.getFeatures(evt.pixel).then((foundFeatures) => {
         if (!foundFeatures.length) {
           setSelectedPostOfficeId(undefined);
-          layer.changed();
+        } else {
+          const foundFeature = foundFeatures[0];
+          const fid = foundFeature.getId() as string;
+          setSelectedPostOfficeId(fid);
         }
-        const foundFeature = foundFeatures[0];
-        if (!foundFeature) return;
-        const fid = foundFeature.getId() as string;
-        setSelectedPostOfficeId(fid);
         layer.changed();
       });
     };
