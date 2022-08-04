@@ -16,7 +16,8 @@ import {
 
 const CITY_LAYER_URL = 'http://localhost:8080/cities';
 const CITY_LAYER_Z_INDEX = 10;
-const CITY_LABEL_FONT = '12px Noto Sans JP,Meiryo,sans-serif';
+const CITY_LABEL_FONT =
+  '12px "Noto Sans JP","Hiragino Kaku Gothic ProN",Meiryo,sans-serif';
 const CITY_FILL_COLOR = 'rgba(128, 128, 128, 0.3)';
 
 const cityStyleStroke = (): Stroke =>
