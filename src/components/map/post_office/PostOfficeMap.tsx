@@ -1,16 +1,34 @@
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
+
+import { VectorTile as VectorTileSource } from 'ol/source';
+import GeoJSON from 'ol/format/GeoJSON';
 
 import { GSIMap } from '../gsi/GSIMap';
 import { CityLayer } from './CityLayer';
-import { MapProps } from '../definitions';
-import { PostOfficeLayer } from './PostOfficeLayer';
+import { EPSG_WEB_MERCATOR, MapProps } from '../definitions';
+import { PostOfficeLayer, POST_OFFICE_LAYER_URL } from './PostOfficeLayer';
+import { PostOfficeSelectedLayer } from './PostOfficeSelectedLayer';
 
-const PostOfficeMap: FC<MapProps> = (props) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <GSIMap {...props}>
-    <CityLayer />
-    <PostOfficeLayer />
-  </GSIMap>
-);
+const PostOfficeMap: FC<MapProps> = (props) => {
+  const postOfficeSource = useMemo(
+    () =>
+      new VectorTileSource({
+        url: POST_OFFICE_LAYER_URL,
+        format: new GeoJSON({
+          dataProjection: EPSG_WEB_MERCATOR,
+        }),
+      }),
+    [],
+  );
+
+  return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <GSIMap {...props}>
+      <CityLayer />
+      <PostOfficeLayer source={postOfficeSource} />
+      <PostOfficeSelectedLayer source={postOfficeSource} />
+    </GSIMap>
+  );
+};
 
 export default PostOfficeMap;
