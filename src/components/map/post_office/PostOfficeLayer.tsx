@@ -13,7 +13,7 @@ import { MapContext } from '../openlayers/OlMap';
 import { postOfficeBaseStyle } from './post_office_styles';
 
 export const POST_OFFICE_LAYER_URL =
-  'http://localhost:8080/tiled_post_offices/{z}/{x}/{y}';
+  'http://localhost:8080/post_offices/{z}/{x}/{y}';
 const POST_OFFICE_LAYER_Z_INDEX = 20;
 
 const postOfficeStyle = (feature: FeatureLike) =>
