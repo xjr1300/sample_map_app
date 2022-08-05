@@ -1,12 +1,12 @@
 import { FC, useCallback, useContext, useEffect, useState } from 'react';
 
+import { Map as _Map, MapBrowserEvent, MapEvent } from 'ol';
+import BaseEvent from 'ol/events/Event';
 import { VectorTile as VectorTileSource } from 'ol/source';
 import { VectorTile as VectorTileLayer } from 'ol/layer';
 import { FeatureLike } from 'ol/Feature';
-
-import BaseEvent from 'ol/events/Event';
-import { MapBrowserEvent } from 'ol';
 import { Style } from 'ol/style';
+
 import { postOfficeBaseStyle } from './post_office_styles';
 import { MapContext } from '../openlayers/OlMap';
 import {
@@ -62,7 +62,7 @@ export const PostOfficeSelectedLayer: FC<Props> = ({ source }) => {
     });
     map.addLayer(layer);
 
-    const mapClicked = (event: Event | BaseEvent) => {
+    const onMapClicked = (event: Event | BaseEvent) => {
       const evt = event as MapBrowserEvent<UIEvent>;
       const foundPostOfficeLayer = findLayerByIdentify(
         evt.map,
@@ -82,11 +82,23 @@ export const PostOfficeSelectedLayer: FC<Props> = ({ source }) => {
         layer.changed();
       });
     };
-    map.on(['click'], mapClicked);
+
+    const onMapMoveEnd = (event: MapEvent) => {
+      const localMap = event.target as _Map;
+      const view = localMap.getView();
+      const resolution = view.getResolution() as number;
+      if (SWITCH_CITIES_TO_POST_OFFICES_RESOLUTION < resolution) {
+        setSelectedPostOfficeId(undefined);
+      }
+    };
+
+    map.on('click', onMapClicked);
+    map.on('moveend', onMapMoveEnd);
 
     return () => {
       map.removeLayer(layer);
-      map.un(['click'], mapClicked);
+      map.un('moveend', onMapMoveEnd);
+      map.un('click', onMapClicked);
     };
   }, [map, source, postOfficeSelectedStyleFunc]);
 
