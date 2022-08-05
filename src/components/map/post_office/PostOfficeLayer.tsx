@@ -14,7 +14,7 @@ import { postOfficeBaseStyle } from './post_office_styles';
 
 export const POST_OFFICE_LAYER_URL =
   'http://localhost:8080/post_offices/{z}/{x}/{y}';
-const POST_OFFICE_LAYER_Z_INDEX = 20;
+const POST_OFFICE_LAYER_Z_INDEX = 30;
 
 const postOfficeStyle = (feature: FeatureLike) =>
   postOfficeBaseStyle(

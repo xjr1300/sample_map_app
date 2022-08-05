@@ -15,7 +15,7 @@ import {
   SWITCH_CITIES_TO_POST_OFFICES_RESOLUTION,
 } from '../definitions';
 
-const POST_OFFICE_SELECTED_LAYER_Z_INDEX = 21;
+const POST_OFFICE_SELECTED_LAYER_Z_INDEX = 31;
 
 export const postOfficeSelectedStyle = (feature: FeatureLike) =>
   postOfficeBaseStyle(

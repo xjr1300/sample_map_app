@@ -9,6 +9,7 @@ import { EPSG_WEB_MERCATOR, MapProps } from '../definitions';
 import { PostOfficeLayer, POST_OFFICE_LAYER_URL } from './PostOfficeLayer';
 import { PostOfficeSelectedLayer } from './PostOfficeSelectedLayer';
 import { PostOfficeOverlay } from './PostOfficeOverlay';
+import { PrefectureLayer } from './PrefectureLayer';
 
 const PostOfficeMap: FC<MapProps> = (props) => {
   const postOfficeSource = useMemo(
@@ -25,6 +26,7 @@ const PostOfficeMap: FC<MapProps> = (props) => {
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
     <GSIMap {...props}>
+      <PrefectureLayer />
       <CityLayer />
       <PostOfficeLayer source={postOfficeSource} />
       <PostOfficeSelectedLayer source={postOfficeSource} />
