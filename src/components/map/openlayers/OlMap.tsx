@@ -1,6 +1,6 @@
 import { createContext, FC, useEffect, useRef, useState } from 'react';
 
-import { Map as InnerMap, View } from 'ol';
+import { Map as _Map, View } from 'ol';
 import { defaults as defaultControls, ZoomSlider } from 'ol/control';
 
 import { NullableHTMLDivElement } from '../../../types';
@@ -8,7 +8,7 @@ import { EPSG_WEB_MERCATOR, MapProps } from '../definitions';
 
 import 'ol/ol.css';
 
-type OptionalMap = InnerMap | undefined;
+type OptionalMap = _Map | undefined;
 
 const VIEW_MAX_ZOOM = 18;
 
@@ -25,7 +25,7 @@ export const OlMap: FC<MapProps> = ({
   const [map, setMap] = useState<OptionalMap>(undefined);
 
   useEffect(() => {
-    const initialMap = new InnerMap({
+    const initialMap = new _Map({
       target: mapRef.current as HTMLDivElement,
       view: new View({
         projection: EPSG_WEB_MERCATOR,
