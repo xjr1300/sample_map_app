@@ -76,16 +76,16 @@ const PostOfficeContent: FC<Props> = ({ feature }) => {
   );
   const postOfficeClassDict = useMemo(() => postOfficeClassDictionary(), []);
 
-  const cityName = cityDict.get(feature?.get('city_code') as string) as string;
+  const cityName = cityDict.get(feature?.get('cityCode') as string) as string;
   const address = `岐阜県${cityName}${feature?.get('address') as string}`;
   const categoryName = facilityCategoryDict.get(
-    feature?.get('category_code') as string,
+    feature?.get('categoryCode') as string,
   ) as string;
   const subcategoryName = facilitySubcategoryDict.get(
-    feature?.get('subcategory_code') as string,
+    feature?.get('subcategoryCode') as string,
   ) as string;
   const postOfficeClassName = postOfficeClassDict.get(
-    feature?.get('post_office_code') as string,
+    feature?.get('postOfficeCode') as string,
   ) as string;
   const point = feature?.getGeometry() as Point;
   const coordinate = point.getCoordinates();
