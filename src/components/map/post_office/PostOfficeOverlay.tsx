@@ -1,7 +1,7 @@
 import { FC, useContext, useEffect, useMemo, useRef, useState } from 'react';
 
+import { Map as _Map, Feature, MapBrowserEvent, Overlay, MapEvent } from 'ol';
 import { VectorTile as VectorTileLayer } from 'ol/layer';
-import { Feature, MapBrowserEvent, Overlay } from 'ol';
 import BaseEvent from 'ol/events/Event';
 
 import styled from 'styled-components';
@@ -16,6 +16,7 @@ import {
   facilityCategoryDictionary,
   facilitySubcategoryDictionary,
   postOfficeClassDictionary,
+  SWITCH_CITIES_TO_POST_OFFICES_RESOLUTION,
 } from '../definitions';
 import { MapContext } from '../openlayers/OlMap';
 
@@ -149,13 +150,24 @@ export const PostOfficeOverlay: FC = () => {
       });
     };
 
+    const onMapMoveEnd = (event: MapEvent) => {
+      const localMap = event.target as _Map;
+      const view = localMap.getView();
+      const resolution = view.getResolution() as number;
+      if (SWITCH_CITIES_TO_POST_OFFICES_RESOLUTION < resolution) {
+        initialOverlay.setPosition(undefined);
+      }
+    };
+
     map.on('singleclick', popupOverlay);
+    map.on('moveend', onMapMoveEnd);
 
     setOverlay(initialOverlay);
 
     return () => {
       map.removeOverlay(initialOverlay);
       map.un('singleclick', popupOverlay);
+      map.un('moveend', onMapMoveEnd);
     };
   }, [map]);
 

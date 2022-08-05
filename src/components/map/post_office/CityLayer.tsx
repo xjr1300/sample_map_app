@@ -40,7 +40,7 @@ const cityLabelText = (
   feature: FeatureLike,
   resolution: number,
 ): string | undefined => {
-  if (resolution > SWITCH_CITIES_TO_POST_OFFICES_RESOLUTION) {
+  if (SWITCH_CITIES_TO_POST_OFFICES_RESOLUTION < resolution) {
     return feature.get('name') as string;
   }
 
